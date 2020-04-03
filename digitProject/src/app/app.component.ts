@@ -41,7 +41,7 @@ onSubmit() {
     this.searchedInput = this.digitInput;
     // get page of items from api
     this.config.currentPage = 1; 
-    this.http.get<any>(`https://hobs-lite-eiot-uat.westindia.cloudapp.azure.com/FindPossibleAlphabet/FindPossibleAlphabet?number=${this.digitInput}&recordperpage=${this.config.itemsPerPage}`).subscribe(x => {
+    this.http.get<any>(`http://localhost:9999/FindPossibleAlphabet/FindPossibleAlphabet?number=${this.digitInput}&recordperpage=${this.config.itemsPerPage}`).subscribe(x => {
       console.log("Response",x);
       this.buildPager(x)
     });
@@ -49,7 +49,7 @@ onSubmit() {
   pageChange(newPage: number) {
     console.log("Page change called",newPage);
           this.config.currentPage = newPage; 
-          this.http.get<any>(`https://hobs-lite-eiot-uat.westindia.cloudapp.azure.com/FindPossibleAlphabet/FillterPossibleAlphabetbyPageNumber?page=${this.config.currentPage}&recordperpage=${this.config.itemsPerPage}`).subscribe(x => {
+          this.http.get<any>(`http://localhost:9999/FindPossibleAlphabet/FillterPossibleAlphabetbyPageNumber?page=${this.config.currentPage}&recordperpage=${this.config.itemsPerPage}`).subscribe(x => {
           console.log("Response",x);
           this.buildPager(x)
         });
